@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import katalog from '../data/katalog.json';
+const kat = [['buah','Bibit buah'],['kayu','Kayu dan penghijauan'],['perkebunan','Perkebunan'],['hias','Tanaman hias'],['rempah','Rempah'],['pakan','Pakan ternak']];
+const wa = n => 'https://wa.me/6288225660136?text=' + encodeURIComponent(`Halo, saya mau tanya bibit ${n}. Harga dan stoknya berapa?`);
+---
+<Base title="Katalog bibit | Muhtar Bibit Unggul" desc="Katalog bibit durian, alpukat, jati, balsa, trembesi, kopi, kelapa, dan lainnya dari Kemiri, Purworejo. Harga via WhatsApp." path="/katalog">
+<section><div class="wrap"><h1 style="font-size:clamp(2rem,5vw,3rem)">Katalog bibit</h1>
+<p class="lead">Harga dan stok lewat WhatsApp. Tombol di tiap bibit membuka chat dengan nama bibitnya sudah terisi.</p>
+<div class="chips" id="filter"><button class="chip" data-k="" aria-pressed="true">Semua</button>{kat.map(([k,t]) => <button class="chip" data-k={k} aria-pressed="false">{t}</button>)}</div>
+<div class="grid" id="grid">{katalog.map(p => <article class="card" data-k={p.kategori}><div class="ph"><img src={p.foto} alt={`Bibit ${p.nama}`} loading="lazy"><span class="tag">{p.nama}</span></div><a class="order" href={wa(p.nama)}>Tanya harga <span aria-hidden="true">WA</span></a></article>)}</div></div></section>
+<script is:inline>
+const bs=[...document.querySelectorAll('#filter .chip')],cs=[...document.querySelectorAll('#grid .card')];
+function set(k){bs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)));cs.forEach(c=>c.hidden=!!k&&c.dataset.k!==k)}
+bs.forEach(b=>b.addEventListener('click',()=>{set(b.dataset.k);history.replaceState(null,'',b.dataset.k?'#'+b.dataset.k:location.pathname)}));
+const h=location.hash.slice(1);if(bs.some(b=>b.dataset.k===h))set(h);
+</script>
+</Base>

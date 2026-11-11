@@ -1,0 +1,5 @@
+{ "redirects": [
+  { "source": "/halaman-muka", "destination": "/", "permanent": true },
+  { "source": "/home", "destination": "/", "permanent": true },
+  { "source": "/tentang-kami", "destination": "/tentang", "permanent": true },
+  { "source": "/alamat-kami", "destination": "/kontak", "permanent": true } ] }

@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+const { title, desc, path = '/' } = Astro.props;
+const site = 'https://muhtarbibitunggul.com';
+const url = new URL(path, site).href;
+const ld = { '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'Muhtar Bibit Unggul', url: site, telephone: '+6288225660136',
+  image: site + '/img/buah/durian-bawor.webp',
+  address: { '@type': 'PostalAddress', streetAddress: 'Dusun Ngemplak RT.01/RW.02, Samping', addressLocality: 'Kemiri', addressRegion: 'Jawa Tengah', postalCode: '54262', addressCountry: 'ID' },
+  geo: { '@type': 'GeoCoordinates', latitude: -7.663849, longitude: 109.877276 } };
+const links = [['/katalog', 'Katalog'], ['/#cara-pesan', 'Cara pesan'], ['/tentang', 'Tentang'], ['/kontak', 'Kontak']];
+---
+<!doctype html>
+<html lang="id"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{title}</title><meta name="description" content={desc}>
+<link rel="canonical" href={url}><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content={title}><meta property="og:description" content={desc}><meta property="og:type" content="website"><meta property="og:url" content={url}><meta property="og:image" content={site + '/img/buah/durian-bawor.webp'}>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json" set:html={JSON.stringify(ld)}></script>
+</head><body>
+<header><div class="wrap bar">
+<a class="brand" href="/"><img src="/favicon.svg" alt="" width="32" height="32">Muhtar Bibit Unggul</a>
+<button id="mb" aria-expanded="false" aria-controls="nv">Menu</button>
+<nav id="nv">{links.map(([h, t]) => <a href={h}>{t}</a>)}<a class="btn btn-wa" href="https://wa.me/6288225660136">Chat WhatsApp</a></nav>
+</div></header>
+<main><slot /></main>
+<footer><div class="wrap">
+<div><h3>Muhtar Bibit Unggul</h3><p>Bibit buah, kayu, dan tanaman perkebunan dari Kemiri, Purworejo. Harga dan stok lewat WhatsApp.</p></div>
+<div><h3>Halaman</h3>{links.map(([h, t]) => <a href={h}>{t}</a>)}</div>
+<div><h3>Hubungi</h3><a href="https://wa.me/6288225660136">WhatsApp 0882-2566-0136</a><address>Dusun Ngemplak RT.01/RW.02, Samping, Kec. Kemiri, Kab. Purworejo, Jawa Tengah 54262</address></div>
+</div></footer>
+<a class="btn fab" href="https://wa.me/6288225660136">Chat WhatsApp</a>
+<script is:inline>const b=document.getElementById('mb'),n=document.getElementById('nv');b.addEventListener('click',()=>{const o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});</script>
+</body></html>

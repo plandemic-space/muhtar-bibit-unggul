@@ -1,0 +1,278 @@
+[
+ {
+  "slug": "alpukat",
+  "nama": "Alpukat",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat.webp"
+ },
+ {
+  "slug": "jati",
+  "nama": "Jati",
+  "kategori": "kayu",
+  "foto": "/img/kayu/jati.webp"
+ },
+ {
+  "slug": "kayu-balsa",
+  "nama": "Kayu Balsa",
+  "kategori": "kayu",
+  "foto": "/img/kayu/kayu-balsa.webp"
+ },
+ {
+  "slug": "pucuk-merah",
+  "nama": "Pucuk Merah",
+  "kategori": "hias",
+  "foto": "/img/hias/pucuk-merah.webp"
+ },
+ {
+  "slug": "durian-musang-king",
+  "nama": "Durian Musang King",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-musang-king.webp"
+ },
+ {
+  "slug": "durian-bawor",
+  "nama": "Durian Bawor",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-bawor.webp"
+ },
+ {
+  "slug": "alpukat-aligator",
+  "nama": "Alpukat Aligator",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat-aligator.webp"
+ },
+ {
+  "slug": "alpukat-miki",
+  "nama": "Alpukat Miki",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat-miki.webp"
+ },
+ {
+  "slug": "alpukat-pluwang",
+  "nama": "Alpukat Pluwang",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat-pluwang.webp"
+ },
+ {
+  "slug": "durian-mk-b",
+  "nama": "Durian MK (foto kebun)",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-mk-b.webp"
+ },
+ {
+  "slug": "trembesi",
+  "nama": "Trembesi",
+  "kategori": "kayu",
+  "foto": "/img/kayu/trembesi.webp"
+ },
+ {
+  "slug": "kayu-putih",
+  "nama": "Kayu Putih",
+  "kategori": "kayu",
+  "foto": "/img/kayu/kayu-putih.webp"
+ },
+ {
+  "slug": "jati-b",
+  "nama": "Jati (foto 2)",
+  "kategori": "kayu",
+  "foto": "/img/kayu/jati-b.webp"
+ },
+ {
+  "slug": "mahoni",
+  "nama": "Mahoni",
+  "kategori": "kayu",
+  "foto": "/img/kayu/mahoni.webp"
+ },
+ {
+  "slug": "albasia-sengon-laut",
+  "nama": "Albasia / Sengon Laut",
+  "kategori": "kayu",
+  "foto": "/img/kayu/albasia-sengon-laut.webp"
+ },
+ {
+  "slug": "jabon",
+  "nama": "Jabon",
+  "kategori": "kayu",
+  "foto": "/img/kayu/jabon.webp"
+ },
+ {
+  "slug": "matoa",
+  "nama": "Matoa",
+  "kategori": "buah",
+  "foto": "/img/buah/matoa.webp"
+ },
+ {
+  "slug": "pohon-sadang",
+  "nama": "Pohon Sadang",
+  "kategori": "kayu",
+  "foto": "/img/kayu/pohon-sadang.webp"
+ },
+ {
+  "slug": "durian-oche-jumbo",
+  "nama": "Durian Oche Jumbo",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-oche-jumbo.webp"
+ },
+ {
+  "slug": "durian-bawor-jumbo",
+  "nama": "Durian Bawor Jumbo",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-bawor-jumbo.webp"
+ },
+ {
+  "slug": "durian-musang-king-jumbo",
+  "nama": "Durian Musang King Jumbo",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-musang-king-jumbo.webp"
+ },
+ {
+  "slug": "cabe-jawa",
+  "nama": "Cabe Jawa",
+  "kategori": "rempah",
+  "foto": "/img/rempah/cabe-jawa.webp"
+ },
+ {
+  "slug": "kopi-robusta",
+  "nama": "Kopi Robusta",
+  "kategori": "perkebunan",
+  "foto": "/img/perkebunan/kopi-robusta.webp"
+ },
+ {
+  "slug": "alpukat-pluwang-b",
+  "nama": "Alpukat Pluwang (foto 2)",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat-pluwang-b.webp"
+ },
+ {
+  "slug": "palem-merah",
+  "nama": "Palem Merah",
+  "kategori": "hias",
+  "foto": "/img/hias/palem-merah.webp"
+ },
+ {
+  "slug": "aren",
+  "nama": "Aren",
+  "kategori": "perkebunan",
+  "foto": "/img/perkebunan/aren.webp"
+ },
+ {
+  "slug": "durian-super-tembaga",
+  "nama": "Durian Super Tembaga",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-super-tembaga.webp"
+ },
+ {
+  "slug": "kayu-putih-b",
+  "nama": "Kayu Putih (foto 2)",
+  "kategori": "kayu",
+  "foto": "/img/kayu/kayu-putih-b.webp"
+ },
+ {
+  "slug": "cengkeh-zanzibar",
+  "nama": "Cengkeh Zanzibar",
+  "kategori": "perkebunan",
+  "foto": "/img/perkebunan/cengkeh-zanzibar.webp"
+ },
+ {
+  "slug": "alpukat-miki-b",
+  "nama": "Alpukat Miki (foto 2)",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat-miki-b.webp"
+ },
+ {
+  "slug": "alpukat-aligator-b",
+  "nama": "Alpukat Aligator (foto 2)",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat-aligator-b.webp"
+ },
+ {
+  "slug": "kelapa-genjah-entok",
+  "nama": "Kelapa Genjah Entok",
+  "kategori": "perkebunan",
+  "foto": "/img/perkebunan/kelapa-genjah-entok.webp"
+ },
+ {
+  "slug": "durian-bawor-bonsai",
+  "nama": "Durian Bawor spek bonsai",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-bawor-bonsai.webp"
+ },
+ {
+  "slug": "durian-duri-hitam-bonsai",
+  "nama": "Durian Duri Hitam spek bonsai",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-duri-hitam-bonsai.webp"
+ },
+ {
+  "slug": "kaliandra",
+  "nama": "Kaliandra",
+  "kategori": "pakan",
+  "foto": "/img/pakan/kaliandra.webp"
+ },
+ {
+  "slug": "durian-duri-hitam",
+  "nama": "Durian Duri Hitam",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-duri-hitam.webp"
+ },
+ {
+  "slug": "pucuk-merah-b",
+  "nama": "Pucuk Merah (foto 2)",
+  "kategori": "hias",
+  "foto": "/img/hias/pucuk-merah-b.webp"
+ },
+ {
+  "slug": "durian-pb35",
+  "nama": "Durian PB 35",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-pb35.webp"
+ },
+ {
+  "slug": "durian-bawor-pb35",
+  "nama": "Durian Bawor PB 35",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-bawor-pb35.webp"
+ },
+ {
+  "slug": "durian-musang-king-pb35",
+  "nama": "Durian Musang King PB 35",
+  "kategori": "buah",
+  "foto": "/img/buah/durian-musang-king-pb35.webp"
+ },
+ {
+  "slug": "kelapa-hibrida",
+  "nama": "Kelapa Hibrida (cikal)",
+  "kategori": "perkebunan",
+  "foto": "/img/perkebunan/kelapa-hibrida.webp"
+ },
+ {
+  "slug": "alpukat-aligator-pb35",
+  "nama": "Alpukat Aligator PB 35",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat-aligator-pb35.webp"
+ },
+ {
+  "slug": "alpukat-miki-jumbo",
+  "nama": "Alpukat Miki spek jumbo",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat-miki-jumbo.webp"
+ },
+ {
+  "slug": "kayu-balsa-b",
+  "nama": "Kayu Balsa (foto 2)",
+  "kategori": "kayu",
+  "foto": "/img/kayu/kayu-balsa-b.webp"
+ },
+ {
+  "slug": "kopi-robusta-b",
+  "nama": "Kopi Robusta (foto 2)",
+  "kategori": "perkebunan",
+  "foto": "/img/perkebunan/kopi-robusta-b.webp"
+ },
+ {
+  "slug": "alpukat-aligator-jumbo",
+  "nama": "Alpukat Aligator spek jumbo",
+  "kategori": "buah",
+  "foto": "/img/buah/alpukat-aligator-jumbo.webp"
+ }
+]
