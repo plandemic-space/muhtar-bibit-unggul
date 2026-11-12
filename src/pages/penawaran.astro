@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Minta penawaran bibit | Muhtar Bibit Unggul" desc="Isi kebutuhan bibit perusahaan atau proyek Anda. Pesan terkirim ke WhatsApp Muhtar Bibit Unggul untuk dibalas dengan penawaran." path="/penawaran">
+<section><div class="wrap"><h1 style="font-size:clamp(2rem,5vw,2.8rem)">Minta penawaran</h1>
+<p class="lead">Isi kebutuhan Anda. Tombol di bawah membuka WhatsApp dengan pesan yang sudah tersusun, tinggal Anda kirim.</p>
+<form class="rfq" id="rfq">
+<div class="pair"><label>Nama<input name="nama" required autocomplete="name"></label><label>Perusahaan atau instansi<input name="pt" autocomplete="organization"></label></div>
+<label>Jenis bibit<input name="jenis" required placeholder="Contoh: jati, balsa"></label>
+<div class="pair"><label>Jumlah (batang)<input name="jumlah" inputmode="numeric" required></label><label>Dibutuhkan sampai<input name="waktu" placeholder="Contoh: Januari 2027"></label></div>
+<label>Lokasi tanam atau tujuan kirim<input name="lokasi" required></label>
+<label>Catatan<textarea name="catatan" rows="3"></textarea></label>
+<button class="btn btn-wa" type="submit">Kirim lewat WhatsApp</button></form></div></section>
+<script is:inline>
+const f=document.getElementById('rfq'),j=new URLSearchParams(location.search).get('jenis');if(j)f.jenis.value=j;
+f.addEventListener('submit',e=>{e.preventDefault();const v=n=>f[n].value.trim()||'-';
+const t=`Halo, saya ingin minta penawaran bibit.\nNama: ${v('nama')}\nPerusahaan/instansi: ${v('pt')}\nJenis bibit: ${v('jenis')}\nJumlah: ${v('jumlah')} batang\nDibutuhkan sampai: ${v('waktu')}\nLokasi tanam/tujuan kirim: ${v('lokasi')}\nCatatan: ${v('catatan')}`;
+location.href='https://wa.me/6288225660136?text='+encodeURIComponent(t)});
+</script>
+</Base>

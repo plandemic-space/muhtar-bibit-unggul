@@ -1,28 +1,30 @@
 ---
 import Base from '../layouts/Base.astro';
 import katalog from '../data/katalog.json';
-const pilih = ['durian-musang-king','durian-bawor','alpukat-aligator','alpukat-miki','jati','kayu-balsa','kopi-robusta','pucuk-merah'];
-const unggulan = pilih.map(s => katalog.find(k => k.slug === s));
-const kat = [['buah','Bibit buah'],['kayu','Kayu dan penghijauan'],['perkebunan','Perkebunan'],['hias','Tanaman hias'],['rempah','Rempah'],['pakan','Pakan ternak']];
-const wa = n => 'https://wa.me/6288225660136?text=' + encodeURIComponent(`Halo, saya mau tanya bibit ${n}. Harga dan stoknya berapa?`);
+import ref from '../data/referensi.json';
+const grup = {};
+katalog.filter(k => k.kategori === 'kayu').forEach(k => { const n = k.nama.replace(' (foto 2)', ''); (grup[n] ||= []).push(k.foto); });
+const kayu = Object.entries(grup);
 ---
-<Base title="Muhtar Bibit Unggul | Bibit durian, alpukat, jati dan kayu di Kemiri, Purworejo" desc="Kebun bibit di Kemiri, Purworejo: durian bawor dan musang king, alpukat, jati, balsa, kopi, dan lainnya. Tanya harga dan stok lewat WhatsApp.">
-<section class="hero"><div class="wrap">
-<div><h1>Bibit durian, alpukat, dan kayu langsung dari kebun bibit di Kemiri, Purworejo</h1>
-<p>Pilih bibit di katalog, lalu kirim nama dan jumlahnya lewat WhatsApp. Harga dan stok kami jawab di sana.</p>
-<div class="cta"><a class="btn btn-wa" href="https://wa.me/6288225660136">Chat WhatsApp</a><a class="btn btn-ghost" href="/katalog">Lihat katalog</a></div></div>
-<figure><img src="/img/buah/durian-bawor.webp" alt="Bibit durian bawor dalam polybag di kebun bibit" width="900" height="1125" fetchpriority="high"><figcaption><span class="tag">Durian Bawor</span></figcaption></figure>
+<Base title="Muhtar Bibit Unggul | Pemasok bibit kayu jati, balsa, albasia dari Purworejo" desc="Pemasok bibit kayu dalam jumlah besar dari Kemiri, Purworejo: jati, balsa, albasia, trembesi, mahoni, jabon. Minta penawaran lewat WhatsApp.">
+<div class="hero"><img src="/img/kayu/kayu-balsa-b.webp" alt="Hamparan bibit kayu di kebun bibit Muhtar" fetchpriority="high"><div class="wrap">
+<h1>Pemasok bibit kayu dalam jumlah besar dari Purworejo</h1>
+<p>Jati, balsa, albasia, trembesi, mahoni, dan jabon. Kirim kebutuhan Anda, kami balas dengan penawaran harga dan ketersediaan.</p>
+<div class="cta"><a class="btn btn-wa" href="/penawaran">Minta penawaran</a><a class="btn btn-ghost" href="#kayu">Lihat jenis kayu</a></div></div></div>
+{ref.tampil && <div class="ref"><div class="wrap"><span>{ref.teks}</span></div></div>}
+<section><div class="wrap paths">
+<a class="path main" href="/penawaran"><h2>Untuk perusahaan dan proyek</h2><p>Butuh bibit kayu dalam jumlah besar untuk penanaman, penghijauan, atau pasokan rutin.</p><span>Minta penawaran</span></a>
+<a class="path alt" href="/katalog"><h2>Untuk kebun sendiri</h2><p>Cari bibit durian, alpukat, kopi, dan tanaman lain untuk kebun atau pekarangan Anda.</p><span>Lihat katalog</span></a>
 </div></section>
-<section><div class="wrap"><h2>Cari berdasarkan jenis</h2>
-<div class="chips">{kat.map(([k,t]) => <a class="chip" href={`/katalog#${k}`}>{t}</a>)}</div></div></section>
-<section style="padding-top:0"><div class="wrap"><h2>Bibit pilihan</h2>
-<div class="grid">{unggulan.map(p => <article class="card"><div class="ph"><img src={p.foto} alt={`Bibit ${p.nama}`} loading="lazy"><span class="tag">{p.nama}</span></div><a class="order" href={wa(p.nama)}>Tanya harga <span aria-hidden="true">WA</span></a></article>)}</div>
-<p style="margin-top:2rem"><a class="btn btn-ghost" href="/katalog">Lihat semua bibit</a></p></div></section>
-<section id="cara-pesan" class="band"><div class="wrap"><h2>Cara pesan</h2>
-<ol class="steps">
-<li><h3>Pilih bibit</h3><p>Buka katalog dan cari bibit yang Anda butuhkan.</p></li>
-<li><h3>Tekan tombol WhatsApp</h3><p>Pesan sudah terisi nama bibitnya. Tambahkan jumlah yang Anda mau.</p></li>
-<li><h3>Terima harga dan stok</h3><p>Kami balas dengan harga dan ketersediaan. Pengiriman atau ambil di kebun bisa dibahas di chat.</p></li></ol></div></section>
-<section><div class="wrap two"><div><h2>Kebun bibit kami ada di Samping, Kemiri</h2><p class="lead">Dusun Ngemplak RT.01/RW.02, Kec. Kemiri, Kab. Purworejo. Mau lihat bibit langsung? Kabari lewat WhatsApp sebelum datang.</p><p style="margin-top:1.5rem"><a class="btn btn-ghost" href="/kontak">Alamat dan peta</a></p></div>
+<section id="kayu" class="soft"><div class="wrap"><h2>Jenis bibit kayu</h2>
+<p class="lead">Ukuran, stok, dan minimal order kami jelaskan lewat WhatsApp, sesuai jumlah yang Anda butuhkan.</p>
+<div class="rows">{kayu.map(([n, f]) => <article class="row"><div class={f.length > 1 ? 'th two' : 'th'}>{f.slice(0, 2).map(s => <img src={s} alt={`Bibit ${n}`} loading="lazy">)}</div><div><h3>{n}</h3></div><a class="btn btn-ghost" href={`/penawaran?jenis=${encodeURIComponent(n)}`}>Minta penawaran</a></article>)}</div></div></section>
+<section id="kerja-sama"><div class="wrap"><h2>Cara kerja sama</h2>
+<ol class="flow">
+<li><h3>Kirim kebutuhan</h3><p>Jenis bibit, jumlah, dan lokasi tanam atau tujuan kirim.</p></li>
+<li><h3>Terima penawaran</h3><p>Kami balas dengan harga dan ketersediaan bibit.</p></li>
+<li><h3>Sepakati jadwal</h3><p>Jumlah dan waktu pengambilan atau pengiriman kita tentukan bersama.</p></li>
+<li><h3>Bibit disiapkan</h3><p>Bibit disiapkan di kebun, lalu dikirim atau diambil sesuai kesepakatan.</p></li></ol></div></section>
+<section class="soft"><div class="wrap two"><div><h2>Kebun bibit kami ada di Samping, Kemiri</h2><p class="lead">Dusun Ngemplak RT.01/RW.02, Kec. Kemiri, Kab. Purworejo. Ingin melihat bibit langsung? Kabari lewat WhatsApp sebelum datang.</p><p style="margin-top:1.5rem"><a class="btn btn-ghost" href="/kontak">Alamat dan peta</a></p></div>
 <iframe class="map" title="Peta lokasi kebun bibit" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=109.8723%2C-7.6678%2C109.8823%2C-7.6598&layer=mapnik&marker=-7.663849%2C109.877276"></iframe></div></section>
 </Base>
