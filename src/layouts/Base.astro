@@ -4,7 +4,7 @@ const { title, desc, path = '/' } = Astro.props;
 const site = 'https://muhtarbibitunggul.com';
 const url = new URL(path, site).href;
 const ld = { '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'Muhtar Bibit Unggul', url: site, telephone: '+6288225660136',
-  image: site + '/img/kayu/kayu-balsa-b.webp',
+  image: site + '/img/hero.webp',
   address: { '@type': 'PostalAddress', streetAddress: 'Dusun Ngemplak RT.01/RW.02, Samping', addressLocality: 'Kemiri', addressRegion: 'Jawa Tengah', postalCode: '54262', addressCountry: 'ID' },
   geo: { '@type': 'GeoCoordinates', latitude: -7.663849, longitude: 109.877276 } };
 const links = [['/#kayu', 'Jenis kayu'], ['/katalog', 'Katalog'], ['/#kerja-sama', 'Kerja sama'], ['/tentang', 'Tentang'], ['/kontak', 'Kontak']];
@@ -14,7 +14,7 @@ const links = [['/#kayu', 'Jenis kayu'], ['/katalog', 'Katalog'], ['/#kerja-sama
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content={desc}>
 <link rel="canonical" href={url}><link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content={title}><meta property="og:description" content={desc}><meta property="og:type" content="website"><meta property="og:url" content={url}><meta property="og:image" content={site + '/img/kayu/kayu-balsa-b.webp'}>
+<meta property="og:title" content={title}><meta property="og:description" content={desc}><meta property="og:type" content="website"><meta property="og:url" content={url}><meta property="og:image" content={site + '/img/hero.webp'}>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json" set:html={JSON.stringify(ld)}></script>
