@@ -5,6 +5,7 @@ import ref from '../data/referensi.json';
 const grup = {};
 katalog.filter(k => k.kategori === 'kayu').forEach(k => { const n = k.nama.replace(' (foto 2)', ''); (grup[n] ||= []).push(k.foto); });
 const kayu = Object.entries(grup);
+const galeri = ['durian-mk-b','kayu-balsa','pohon-sadang','durian-bawor-pb35','kaliandra','albasia-sengon-laut'].map(s => katalog.find(k => k.slug === s));
 ---
 <Base title="Muhtar Bibit Unggul | Pemasok bibit kayu jati, balsa, albasia dari Purworejo" desc="Pemasok bibit kayu dalam jumlah besar dari Kemiri, Purworejo: jati, balsa, albasia, trembesi, mahoni, jabon. Minta penawaran lewat WhatsApp.">
 <div class="hero"><img src="/img/hero.webp" alt="Hamparan bibit kayu dalam polybag di kebun bibit" fetchpriority="high"><div class="wrap">
@@ -18,13 +19,16 @@ const kayu = Object.entries(grup);
 </div></section>
 <section id="kayu" class="soft"><div class="wrap"><h2>Jenis bibit kayu</h2>
 <p class="lead">Ukuran, stok, dan minimal order kami jelaskan lewat WhatsApp, sesuai jumlah yang Anda butuhkan.</p>
-<div class="rows">{kayu.map(([n, f]) => <article class="row"><div class={f.length > 1 ? 'th two' : 'th'}>{f.slice(0, 2).map(s => <img src={s} alt={`Bibit ${n}`} loading="lazy">)}</div><div><h3>{n}</h3></div><a class="btn btn-ghost" href={`/penawaran?jenis=${encodeURIComponent(n)}`}>Minta penawaran</a></article>)}</div></div></section>
-<section id="kerja-sama"><div class="wrap"><h2>Cara kerja sama</h2>
+<div class="kgrid">{kayu.map(([n, f]) => <article class="kcard"><div class={f.length > 1 ? 'kph two' : 'kph'}>{f.slice(0, 2).map(s => <img src={s} alt={`Bibit ${n}`} loading="lazy">)}</div><div class="kbody"><h3>{n}</h3><a class="btn btn-ghost" href={`/penawaran?jenis=${encodeURIComponent(n)}`}>Minta penawaran</a></div></article>)}</div></div></section>
+<section id="kebun"><div class="wrap"><h2>Dari kebun kami</h2>
+<p class="lead">Foto asli bibit di kebun Muhtar Bibit Unggul, Kemiri, Purworejo.</p>
+<div class="gal">{galeri.map(g => <img src={g.foto} alt={`Bibit ${g.nama} di kebun`} loading="lazy">)}</div></div></section>
+<section id="kerja-sama" class="soft"><div class="wrap"><h2>Cara kerja sama</h2>
 <ol class="flow">
 <li><h3>Kirim kebutuhan</h3><p>Jenis bibit, jumlah, dan lokasi tanam atau tujuan kirim.</p></li>
 <li><h3>Terima penawaran</h3><p>Kami balas dengan harga dan ketersediaan bibit.</p></li>
 <li><h3>Sepakati jadwal</h3><p>Jumlah dan waktu pengambilan atau pengiriman kita tentukan bersama.</p></li>
 <li><h3>Bibit disiapkan</h3><p>Bibit disiapkan di kebun, lalu dikirim atau diambil sesuai kesepakatan.</p></li></ol></div></section>
-<section class="soft"><div class="wrap two"><div><h2>Kebun bibit kami ada di Samping, Kemiri</h2><p class="lead">Dusun Ngemplak RT.01/RW.02, Kec. Kemiri, Kab. Purworejo. Ingin melihat bibit langsung? Kabari lewat WhatsApp sebelum datang.</p><p style="margin-top:1.5rem"><a class="btn btn-ghost" href="/kontak">Alamat dan peta</a></p></div>
+<section><div class="wrap two"><div><h2>Kebun bibit kami ada di Samping, Kemiri</h2><p class="lead">Dusun Ngemplak RT.01/RW.02, Kec. Kemiri, Kab. Purworejo. Ingin melihat bibit langsung? Kabari lewat WhatsApp sebelum datang.</p><p style="margin-top:1.5rem"><a class="btn btn-ghost" href="/kontak">Alamat dan peta</a></p></div>
 <iframe class="map" title="Peta lokasi kebun bibit" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=109.8723%2C-7.6678%2C109.8823%2C-7.6598&layer=mapnik&marker=-7.663849%2C109.877276"></iframe></div></section>
 </Base>

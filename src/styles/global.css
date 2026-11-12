@@ -94,3 +94,14 @@ footer a:hover{color:#fff}
 .fab{position:fixed;right:1rem;bottom:1rem;z-index:30;box-shadow:0 6px 18px rgba(0,0,0,.25);background:#25a244;border-color:#25a244;color:#fff;border-radius:999px}
 @media(min-width:901px){.fab{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+section[id]{scroll-margin-top:84px}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.3rem;margin-top:2rem}
+.kcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.kph{display:flex;gap:3px;aspect-ratio:3/2;background:#dfe8d6}
+.kph img{flex:1;min-width:0;height:100%;object-fit:cover}
+.kbody{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.1rem}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:210px;gap:10px;margin-top:2rem}
+.gal img{width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+.gal img:first-child{grid-column:span 2;grid-row:span 2}
+@media(max-width:620px){.gal{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.kgrid{grid-template-columns:1fr}}
