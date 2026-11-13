@@ -3,8 +3,12 @@ import '../styles/global.css';
 const { title, desc, path = '/' } = Astro.props;
 const site = 'https://muhtarbibitunggul.com';
 const url = new URL(path, site).href;
+// Gambar pratinjau memakai domain produksi aktif (vercel.app sekarang, .com setelah domain dipindah)
+const ogBase = process.env.VERCEL_PROJECT_PRODUCTION_URL ? 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL : site;
+const ogImage = ogBase + '/img/og.jpg';
 const ld = { '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'Muhtar Bibit Unggul', url: site, telephone: '+6288225660136',
   image: site + '/img/hero.webp',
+  openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
   address: { '@type': 'PostalAddress', streetAddress: 'Dusun Ngemplak RT.01/RW.02, Samping', addressLocality: 'Kemiri', addressRegion: 'Jawa Tengah', postalCode: '54262', addressCountry: 'ID' },
   geo: { '@type': 'GeoCoordinates', latitude: -7.663849, longitude: 109.877276 } };
 const links = [['/#kayu', 'Jenis kayu'], ['/katalog', 'Katalog'], ['/#kerja-sama', 'Kerja sama'], ['/tentang', 'Tentang'], ['/kontak', 'Kontak']];
@@ -13,14 +17,14 @@ const links = [['/#kayu', 'Jenis kayu'], ['/katalog', 'Katalog'], ['/#kerja-sama
 <html lang="id"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content={desc}>
-<link rel="canonical" href={url}><link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content={title}><meta property="og:description" content={desc}><meta property="og:type" content="website"><meta property="og:url" content={url}><meta property="og:image" content={site + '/img/hero.webp'}>
+<link rel="canonical" href={url}><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content={title}><meta property="og:description" content={desc}><meta property="og:type" content="website"><meta property="og:url" content={url}><meta property="og:image" content={ogImage}><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:locale" content="id_ID"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content={ogImage}>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json" set:html={JSON.stringify(ld)}></script>
 </head><body>
 <header><div class="wrap bar">
-<a class="brand" href="/"><img src="/favicon.svg" alt="" width="32" height="32">Muhtar Bibit Unggul</a>
+<a class="brand" href="/"><img src="/icon-192.png" alt="" width="36" height="36">Muhtar Bibit Unggul</a>
 <button id="mb" aria-expanded="false" aria-controls="nv">Menu</button>
 <nav id="nv">{links.map(([h, t]) => <a href={h}>{t}</a>)}<a class="btn btn-wa" href="/penawaran">Minta penawaran</a></nav>
 </div></header>
@@ -28,7 +32,7 @@ const links = [['/#kayu', 'Jenis kayu'], ['/katalog', 'Katalog'], ['/#kerja-sama
 <footer><div class="wrap">
 <div><h3>Muhtar Bibit Unggul</h3><p>Bibit kayu, buah, dan tanaman perkebunan dari Kemiri, Purworejo. Harga, stok, dan pengiriman lewat WhatsApp.</p></div>
 <div><h3>Halaman</h3>{links.map(([h, t]) => <a href={h}>{t}</a>)}<a href="/penawaran">Minta penawaran</a></div>
-<div><h3>Hubungi</h3><a href="https://wa.me/6288225660136">WhatsApp 0882-2566-0136</a><address>Dusun Ngemplak RT.01/RW.02, Samping, Kec. Kemiri, Kab. Purworejo, Jawa Tengah 54262</address></div>
+<div><h3>Hubungi</h3><a href="https://wa.me/6288225660136">WhatsApp 0882-2566-0136</a><address>Dusun Ngemplak RT.01/RW.02, Samping, Kec. Kemiri, Kab. Purworejo, Jawa Tengah 54262</address><p class="jam">Buka 24 jam. Kabari lewat WhatsApp dulu sebelum datang.</p></div>
 </div></footer>
 <a class="btn fab" href="https://wa.me/6288225660136">Chat WhatsApp</a>
 <script is:inline>const b=document.getElementById('mb'),n=document.getElementById('nv');b.addEventListener('click',()=>{const o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});</script>

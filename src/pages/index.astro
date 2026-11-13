@@ -5,6 +5,23 @@ import ref from '../data/referensi.json';
 const grup = {};
 katalog.filter(k => k.kategori === 'kayu').forEach(k => { const n = k.nama.replace(' (foto 2)', ''); (grup[n] ||= []).push(k.foto); });
 const kayu = Object.entries(grup);
+const info = {
+  'Jati': 'Kayu keras bernilai tinggi untuk furnitur dan bangunan. Cocok untuk tanaman jangka panjang.',
+  'Kayu Balsa': 'Cepat tumbuh dengan kayu yang sangat ringan, banyak dicari industri.',
+  'Trembesi': 'Pohon besar berkanopi lebar, populer untuk peneduh dan penghijauan.',
+  'Kayu Putih': 'Daunnya dikenal sebagai sumber minyak kayu putih. Juga dipakai untuk penghijauan lahan.',
+  'Mahoni': 'Kayu berkualitas untuk furnitur dan kerajinan. Juga dipakai sebagai pohon peneduh.',
+  'Albasia / Sengon Laut': 'Cepat tumbuh, populer di kebun rakyat untuk papan dan kayu lapis.',
+  'Jabon': 'Cepat tumbuh, kayunya dipakai untuk kayu lapis dan bahan bangunan ringan.',
+  'Pohon Sadang': 'Ukuran dan ketersediaan kami jelaskan lewat WhatsApp.'
+};
+const faq = [
+  ['Berapa minimal pesanan?', 'Tergantung jenis bibit dan jumlahnya. Kirim kebutuhan Anda lewat formulir penawaran atau WhatsApp, kami balas dengan penawaran.'],
+  ['Bisa dikirim ke luar kota atau luar Jawa?', 'Bisa. Pengiriman tersedia ke berbagai daerah, termasuk luar Pulau Jawa. Ongkos dan jadwal kami bicarakan lewat WhatsApp.'],
+  ['Bisa melihat bibit langsung di kebun?', 'Bisa. Kebun kami ada di Samping, Kemiri, dan buka 24 jam. Kabari lewat WhatsApp dulu supaya kami bisa menemui Anda.'],
+  ['Kenapa ukuran dan stok tidak tercantum?', 'Ukuran dan stok berubah sesuai musim dan pesanan, jadi kami konfirmasi langsung lewat WhatsApp sebelum Anda memesan.']
+];
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
 const galeri = ['durian-mk-b','kayu-balsa','pohon-sadang','durian-bawor-pb35','kaliandra','albasia-sengon-laut'].map(s => katalog.find(k => k.slug === s));
 ---
 <Base title="Muhtar Bibit Unggul | Pemasok bibit kayu jati, balsa, albasia dari Purworejo" desc="Pemasok bibit kayu dalam jumlah besar dari Kemiri, Purworejo: jati, balsa, albasia, trembesi, mahoni, jabon. Minta penawaran lewat WhatsApp.">
@@ -19,7 +36,7 @@ const galeri = ['durian-mk-b','kayu-balsa','pohon-sadang','durian-bawor-pb35','k
 </div></section>
 <section id="kayu" class="soft"><div class="wrap"><h2>Jenis bibit kayu</h2>
 <p class="lead">Ukuran, stok, dan minimal order kami jelaskan lewat WhatsApp, sesuai jumlah yang Anda butuhkan.</p>
-<div class="kgrid">{kayu.map(([n, f]) => <article class="kcard"><div class={f.length > 1 ? 'kph two' : 'kph'}>{f.slice(0, 2).map(s => <img src={s} alt={`Bibit ${n}`} loading="lazy">)}</div><div class="kbody"><h3>{n}</h3><a class="btn btn-ghost" href={`/penawaran?jenis=${encodeURIComponent(n)}`}>Minta penawaran</a></div></article>)}</div></div></section>
+<div class="kgrid">{kayu.map(([n, f]) => <article class="kcard"><div class={f.length > 1 ? 'kph two' : 'kph'}>{f.slice(0, 2).map(s => <img src={s} alt={`Bibit ${n}`} loading="lazy">)}</div><div class="kbody"><h3>{n}</h3><p>{info[n]}</p><a class="btn btn-ghost" href={`/penawaran?jenis=${encodeURIComponent(n)}`}>Minta penawaran</a></div></article>)}</div></div></section>
 <section id="kebun"><div class="wrap"><h2>Dari kebun kami</h2>
 <p class="lead">Foto asli bibit di kebun Muhtar Bibit Unggul, Kemiri, Purworejo.</p>
 <div class="gal">{galeri.map(g => <img src={g.foto} alt={`Bibit ${g.nama} di kebun`} loading="lazy">)}</div></div></section>
@@ -29,6 +46,9 @@ const galeri = ['durian-mk-b','kayu-balsa','pohon-sadang','durian-bawor-pb35','k
 <li><h3>Terima penawaran</h3><p>Kami balas dengan harga dan ketersediaan bibit.</p></li>
 <li><h3>Sepakati jadwal</h3><p>Jumlah dan waktu pengambilan atau pengiriman kita tentukan bersama.</p></li>
 <li><h3>Bibit disiapkan</h3><p>Bibit disiapkan di kebun, lalu dikirim atau diambil sesuai kesepakatan.</p></li></ol></div></section>
-<section><div class="wrap two"><div><h2>Kebun bibit kami ada di Samping, Kemiri</h2><p class="lead">Dusun Ngemplak RT.01/RW.02, Kec. Kemiri, Kab. Purworejo. Ingin melihat bibit langsung? Kabari lewat WhatsApp sebelum datang.</p><p style="margin-top:1.5rem"><a class="btn btn-ghost" href="/kontak">Alamat dan peta</a></p></div>
+<section id="tanya-jawab"><div class="wrap"><h2>Pertanyaan yang sering diajukan</h2>
+<div class="faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+<script type="application/ld+json" set:html={JSON.stringify(faqLd)}></script></div></section>
+<section class="soft"><div class="wrap two"><div><h2>Kebun bibit kami ada di Samping, Kemiri</h2><p class="lead">Dusun Ngemplak RT.01/RW.02, Kec. Kemiri, Kab. Purworejo. Buka 24 jam. Ingin melihat bibit langsung? Kabari lewat WhatsApp sebelum datang.</p><p style="margin-top:1.5rem"><a class="btn btn-ghost" href="/kontak">Alamat dan peta</a></p></div>
 <iframe class="map" title="Peta lokasi kebun bibit" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=109.8723%2C-7.6678%2C109.8823%2C-7.6598&layer=mapnik&marker=-7.663849%2C109.877276"></iframe></div></section>
 </Base>
