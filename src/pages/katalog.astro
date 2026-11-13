@@ -1,18 +1,43 @@
 ---
 import Base from '../layouts/Base.astro';
 import katalog from '../data/katalog.json';
-const kat = [['buah','Bibit buah'],['kayu','Kayu dan penghijauan'],['perkebunan','Perkebunan'],['hias','Tanaman hias'],['rempah','Rempah'],['pakan','Pakan ternak']];
+const kat = [['kayu','Kayu dan penghijauan'],['buah','Bibit buah'],['perkebunan','Perkebunan'],['hias','Tanaman hias'],['rempah','Rempah'],['pakan','Pakan ternak']];
 const wa = n => 'https://wa.me/6288225660136?text=' + encodeURIComponent(`Halo, saya mau tanya bibit ${n}. Harga dan stoknya berapa?`);
+// Gabungkan foto kembar dan varian ukuran (jumbo, PB 35, bonsai) ke satu kartu per jenis bibit
+const induk = n => n.replace(/\s*\((foto 2|foto kebun|cikal)\)\s*$/i, '').replace(/\s+(spek jumbo|jumbo|spek bonsai|PB 35)\s*$/i, '').trim();
+const tampil = n => n.replace(/\s*\((foto 2|foto kebun)\)\s*$/i, '');
+const grup = new Map();
+katalog.forEach(p => { const n = induk(p.nama); if (!grup.has(n)) grup.set(n, { nama: n, kategori: p.kategori, foto: [] }); grup.get(n).foto.push(p); });
+const urut = k => kat.findIndex(x => x[0] === k);
+const kartu = [...grup.values()].sort((a, b) => urut(a.kategori) - urut(b.kategori) || (a.kategori === 'kayu' ? 0 : a.nama.localeCompare(b.nama, 'id')));
+const hitung = k => kartu.filter(c => !k || c.kategori === k).length;
 ---
 <Base title="Katalog bibit | Muhtar Bibit Unggul" desc="Katalog bibit durian, alpukat, jati, balsa, trembesi, kopi, kelapa, dan lainnya dari Kemiri, Purworejo. Harga via WhatsApp." path="/katalog">
 <section><div class="wrap"><h1 style="font-size:clamp(2rem,5vw,3rem)">Katalog bibit</h1>
 <p class="lead">Harga dan stok lewat WhatsApp. Tombol di tiap bibit membuka chat dengan nama bibitnya sudah terisi.</p>
-<div class="chips" id="filter"><button class="chip" data-k="" aria-pressed="true">Semua</button>{kat.map(([k,t]) => <button class="chip" data-k={k} aria-pressed="false">{t}</button>)}</div>
-<div class="grid" id="grid">{katalog.map(p => <article class="card" data-k={p.kategori}><div class="ph"><img src={p.foto} alt={`Bibit ${p.nama}`} loading="lazy"><span class="tag">{p.nama}</span></div><a class="order" href={wa(p.nama)}>Tanya harga <span aria-hidden="true">WA</span></a></article>)}</div></div></section>
+<div class="search"><label for="cari">Cari bibit</label><input id="cari" type="search" placeholder="Contoh: durian, jati, kopi" autocomplete="off"></div>
+<div class="chips" id="filter"><button class="chip" data-k="" aria-pressed="true">Semua <span>{hitung('')}</span></button>{kat.map(([k,t]) => <button class="chip" data-k={k} aria-pressed="false">{t} <span>{hitung(k)}</span></button>)}</div>
+<p class="count" id="count" aria-live="polite"></p>
+<div class="grid" id="grid">{kartu.map(c => <article class="card" data-k={c.kategori} data-q={c.foto.map(f => f.nama).join(' ').toLowerCase()}>
+<div class="ph"><img class="main" src={c.foto[0].foto} alt={`Bibit ${tampil(c.foto[0].nama)}`} loading="lazy"><span class="tag">{tampil(c.foto[0].nama)}</span></div>
+{c.foto.length > 1 && <div class="thumbs">{c.foto.map((f, i) => <button type="button" class="th" data-src={f.foto} data-nama={tampil(f.nama)} aria-label={`Lihat foto ${i + 1} ${tampil(f.nama)}`} aria-pressed={i === 0 ? 'true' : 'false'}><img src={f.foto} alt="" loading="lazy"></button>)}</div>}
+<a class="order" href={wa(tampil(c.foto[0].nama))}>Tanya harga <span aria-hidden="true">WA</span></a></article>)}</div>
+<p class="empty" id="empty" hidden>Bibit yang Anda cari belum terlihat di katalog. <a href="https://wa.me/6288225660136?text=Halo%2C%20saya%20cari%20bibit%20yang%20tidak%20ada%20di%20katalog.">Tanya lewat WhatsApp</a>, bisa jadi tersedia.</p>
+</div></section>
 <script is:inline>
-const bs=[...document.querySelectorAll('#filter .chip')],cs=[...document.querySelectorAll('#grid .card')];
-function set(k){bs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)));cs.forEach(c=>c.hidden=!!k&&c.dataset.k!==k)}
+const bs=[...document.querySelectorAll('#filter .chip')],cs=[...document.querySelectorAll('#grid .card')],ci=document.getElementById('cari'),ct=document.getElementById('count'),em=document.getElementById('empty');
+let kat='';
+const wa=n=>'https://wa.me/6288225660136?text='+encodeURIComponent('Halo, saya mau tanya bibit '+n+'. Harga dan stoknya berapa?');
+function apply(){const q=ci.value.trim().toLowerCase();let n=0;
+ cs.forEach(c=>{const ok=(!kat||c.dataset.k===kat)&&(!q||c.dataset.q.includes(q));c.hidden=!ok;if(ok)n++});
+ ct.textContent=n+' jenis bibit';em.hidden=n>0}
+function set(k){kat=k;bs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)));apply()}
 bs.forEach(b=>b.addEventListener('click',()=>{set(b.dataset.k);history.replaceState(null,'',b.dataset.k?'#'+b.dataset.k:location.pathname)}));
-const h=location.hash.slice(1);if(bs.some(b=>b.dataset.k===h))set(h);
+ci.addEventListener('input',apply);
+document.querySelectorAll('.thumbs .th').forEach(t=>t.addEventListener('click',()=>{
+ const c=t.closest('.card');c.querySelector('img.main').src=t.dataset.src;c.querySelector('img.main').alt='Bibit '+t.dataset.nama;
+ c.querySelector('.tag').textContent=t.dataset.nama;c.querySelector('a.order').href=wa(t.dataset.nama);
+ c.querySelectorAll('.th').forEach(x=>x.setAttribute('aria-pressed',String(x===t)))}));
+const h=location.hash.slice(1);set(bs.some(b=>b.dataset.k===h)?h:'');
 </script>
 </Base>
